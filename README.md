@@ -1,4 +1,4 @@
-# 🌳 TreeScribe
+# TreeScribe🌳
 
 ## Table of Contents
 <dev align="center">
@@ -12,8 +12,6 @@
             <td><a href="#deployment--production-notes">Deployment & Production Notes</a></td>
         </tr>
         <tr>
-            <td><a href="#setup-instructions">Setup Instructions</a></td>
-            <td><a href="#how-to-use-the-app">How to Use the App</a></td>
             <td><a href="#future-improvements">Future Improvements</a></td>
         </tr>
         <tr>
@@ -29,21 +27,18 @@
 
 ## Introduction
 
-**TreeScribe** is a simple web app that lets you upload any directory and instantly generate a clean, text-based representation of its folder structure. You can preview it in your browser and download the result as a `.txt` file. It’s especially useful for developers, writers, and teams that want to document project structures or maintain consistent folder organization.
+> Visualize your folder’s DNA — *instantly*. [Try the Live Web Application](https://web-production-7ebec6.up.railway.app/)
 
-> "Visualize your folder’s DNA — instantly."
+**TreeScribe** is a simple web app that lets you upload any directory and instantly generate a clean, text-based representation of its folder structure. You can preview it in your browser and download the result as a `.txt` file. It’s especially useful for developers, writers, and teams that want to document project structures or maintain consistent folder organization.
 
 ---
 
 ## Features
 
-- Upload a directory via drag-and-drop or file picker
-- Automatically generate a `tree`-style folder structure
+- Upload a directory to automatically generate a `tree`-style folder structure
 - Toggle inclusion of hidden files and folders
 - Live preview of the directory tree before download
 - Export as `.txt` with a single click
-- Dark mode theme (enabled by default for a modern look)
-- Built-in descriptions to guide new users
 
 ---
 
@@ -72,15 +67,30 @@ Directory trees are essential in documentation, especially for open-source proje
 
 ## Deployment & Production Notes
 
-### Backend Deployment
-
 - **Platform**: [Railway](https://railway.app)
-- **Startup Command**:  
-  ```bash
-  uvicorn main:app --host 0.0.0.0 --port $PORT
+- **Requirements**: 
   ```
-- **Requirements**: Defined in requirements.txt
+  fastapi
+  uvicorn
+  jinja2
+  python-multipart
+  ```
 - **Procfile**:
   ```bash
   web: uvicorn main:app --host 0.0.0.0 --port $PORT
   ```
+
+### Future Improvements
+- Add ability to download .md or .html versions
+- Visual (graph-based) folder map rendering
+- Drag-and-drop folder upload
+- Add cloud drive integrations (Google Drive, Dropbox)
+- File search and filter support
+
+### Feedback
+Open an issue or suggestion on GitHub — feedback is welcome!
+
+### Contact
+Mohammad Nusairat — mnusairat2003@gmail.com
+
+<p align="right"><a href="#introduction">back to top ⬆️</a></p>
