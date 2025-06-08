@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TreeScribe – Directory Visualizer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #111827;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: #f3f4f6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #4f46e5; /* Indigo-600 */
+      margin-bottom: 10px;
+    }
+
+    .toggle-dark {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      background: none;
+      border: 1px solid #ccc;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    p.description {
+      max-width: 600px;
+      text-align: center;
+      font-size: 1rem;
+      margin-bottom: 40px;
+    }
+
+    form {
+      background: white;
+      padding: 30px;
+      min-height: 275px;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+      color: #111827;
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15); /* Indigo accent */
+      transform: scale(1.01);
+      transition: all 0.2s ease-in-out;
+    }
+
+    form {
+      background-color: #1f2937;
+      color: #f9fafb;
+      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      font-weight: 600;
+    }
+
+    input[type="file"] {
+      margin-top: 10px;
+    }
+
+    .checkbox-group {
+      margin-top: 20px;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: flex-start;
+      font-weight: normal;
+      font-size: 0.95rem;
+    }
+
+    .checkbox-group input {
+      margin-right: 10px;
+      margin-top: 2px;
+    }
+
+    .checkbox-description {
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin-top: 4px;
+      margin-left: 26px;
+      font-style: italic;
+    }
+
+    button[type="submit"], .download-btn {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background: linear-gradient(to right, #4f46e5, #6366f1);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #1d4ed8;
+    }
+
+    #preview {
+      white-space: pre;
+      font-family: monospace;
+      background: #f1f5f9;
+      color: #1f2937;
+      padding: 20px;
+      margin-top: 30px;
+      max-width: 600px;
+      width: 100%;
+      border-radius: 8px;
+      display: none;
+      font-family: 'Fira Code', monospace;
+    }
+
+    #preview {
+      background-color: #1e293b;
+      color: #e5e7eb;
+    }
+
+    .tagline-subtext {
+      font-size: 1rem;
+      color: #d1d5db; /* Gray-300 */
+      text-align: center;
+      max-width: 600px;
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>TreeScribe🌳</h1>
+  <p class="tagline-subtext">
+    Upload any folder and download its entire directory structure in seconds.<br>
+    Perfect for documentation, collaboration, or just staying organized!<br></br>
+  </p>
+
+  <form id="treeForm">
+    <label for="files">Select a Folder</label>
+    <input type="file" name="files" id="folderInput" webkitdirectory directory multiple required />
+
+    <div class="checkbox-group">
+      <label>
+        <input type="checkbox" name="include_hidden" id="includeHidden" />
+        Include hidden files and folders
+      </label>
+      <div class="checkbox-description">
+        <em>a file or folder is hidden if its name starts with a dot</em>
+      </div>
+    </div>
+
+    <button type="submit">Preview Tree</button>
+  </form>
+
+  <pre id="preview"></pre>
+  <button class="download-btn" id="downloadBtn" style="display:none;">Download Tree</button>
+
+  <script>
+    const form = document.getElementById('treeForm');
+    const preview = document.getElementById('preview');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        const files = document.getElementById('folderInput').files;
+        const includeHidden = document.getElementById('includeHidden').checked;
+
+        for (const file of files) {
+        formData.append('files', file);
+        }
+        if (includeHidden) {
+        formData.append('include_hidden', 'on');
+        }
+
+        const res = await fetch('/upload-preview', {
+        method: 'POST',
+        body: formData,
+        });
+
+        const text = await res.text();
+        preview.textContent = text;
+        preview.style.display = 'block';
+        downloadBtn.style.display = 'inline-block';
+    });
+
+    document.getElementById("downloadBtn").addEventListener("click", () => {
+        window.location.href = "/download-tree";
+    });
+    </script>
+</body>
+</html>
