@@ -28,7 +28,7 @@
 
 ## Introduction
 
-> Visualize your folder’s DNA — *instantly*. [Try the Live Web Application](https://web-production-7ebec6.up.railway.app/)
+> [Visualize your folder’s DNA — *instantly*.](https://web-production-7ebec6.up.railway.app/)
 
 **TreeScribe** is a simple web app that lets you upload any directory or zip file and instantly generate a clean, text-based representation of its folder structure. You can preview it in your browser and download the result as a `.txt` file. It’s especially useful for developers, writers, and teams that want to document project structures or maintain consistent folder organization.
 
@@ -69,7 +69,7 @@ Directory trees are essential in documentation, especially for open-source proje
 - **Backend**: Python, FastAPI, Jinja2
 - **Frontend**: Vanilla HTML, CSS, JavaScript
 - **Styling**: Custom CSS (dark theme)
-- **Deployment**: Railway (Backend), Vercel (optional frontend deployment)
+- **Deployment**: Railway
 
 ---
 
