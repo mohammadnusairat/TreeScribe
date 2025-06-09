@@ -51,7 +51,7 @@
     form {
       background: white;
       padding: 30px;
-      min-height: 275px;
+      min-height: 420px;
       border-radius: 12px;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
       width: 100%;
@@ -85,7 +85,7 @@
     .checkbox-group label {
       display: flex;
       align-items: flex-start;
-      font-weight: normal;
+      font-weight: 600;
       font-size: 0.95rem;
     }
 
@@ -96,10 +96,30 @@
 
     .checkbox-description {
       font-size: 0.85rem;
-      color: #6b7280;
+      color: #f1f5f9;
       margin-top: 4px;
       margin-left: 26px;
       font-style: italic;
+    }
+
+    .ignore-group {
+      margin-top: 20px;
+    }
+
+    .ignore-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .ignore-group input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background-color: #f9fafb;
+      font-size: 0.75rem;
     }
 
     button[type="submit"], .download-btn {
@@ -156,7 +176,10 @@
 
   <form id="treeForm">
     <label for="files">Select a Folder</label>
-    <input type="file" name="files" id="folderInput" webkitdirectory directory multiple required />
+    <input type="file" name="files" id="folderInput" webkitdirectory directory multiple />
+
+    <label for="zipInput">Upload a ZIP file</label>
+    <input type="file" name="zip_upload" id="zipInput" accept=".zip" />
 
     <div class="checkbox-group">
       <label>
@@ -164,11 +187,18 @@
         Include hidden files and folders
       </label>
       <div class="checkbox-description">
-        <em>a file or folder is hidden if its name starts with a dot</em>
+        <em>(a file or folder is hidden if its name starts with a dot)</em>
       </div>
     </div>
 
-    <button type="submit">Preview Tree</button>
+    <div class="ignore-group">
+      <label for="ignore-list">
+        Ignore specific files and folders (comma-separated):
+      </label>
+      <input type="text" name="ignore_list" id="ignore-list" placeholder="eg. main.py, *.log,  __pycache__">
+    </div>
+
+    <button id="preview-btn" type="submit">Preview Tree</button>
   </form>
 
   <pre id="preview"></pre>
@@ -178,30 +208,68 @@
     const form = document.getElementById('treeForm');
     const preview = document.getElementById('preview');
     const downloadBtn = document.getElementById('downloadBtn');
+    const previewBtn = document.getElementById("preview-btn");
 
     form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+      e.preventDefault();
 
-        const formData = new FormData();
-        const files = document.getElementById('folderInput').files;
-        const includeHidden = document.getElementById('includeHidden').checked;
+      previewBtn.disabled = true;
+      previewBtn.textContent = "Previewing...";
 
-        for (const file of files) {
-        formData.append('files', file);
+      const formData = new FormData();
+      const folderInput = document.getElementById('folderInput');
+      const zipInput = document.getElementById('zipInput');
+      const includeHidden = document.getElementById('includeHidden').checked;
+      const ignoreList = document.getElementById('ignore-list').value;
+
+      const folderFiles = folderInput.files;
+      const zipFile = zipInput.files[0];
+
+      if (zipFile && folderFiles.length > 0) {
+        alert("Please upload either a folder or a ZIP file, not both.");
+        previewBtn.disabled = false;
+        previewBtn.textContent = "Preview Tree";
+        return;
+      }
+
+      if (folderFiles.length > 1000) {
+        alert("Limit of 1000 files. Please use a ZIP file.");
+        previewBtn.disabled = false;
+        previewBtn.textContent = "Preview Tree";
+        return;
+      }
+
+      if (folderFiles.length > 0) {
+        for (const file of folderFiles) {
+          formData.append('files', file);
         }
-        if (includeHidden) {
-        formData.append('include_hidden', 'on');
-        }
+      } else if (zipFile) {
+        formData.append('zip_upload', zipFile);
+      } else {
+        alert("Please upload a folder or a ZIP file.");
+        previewBtn.disabled = false;
+        previewBtn.textContent = "Preview Tree";
+        return;
+      }
 
+      if (includeHidden) formData.append('include_hidden', 'on');
+      formData.append('ignore_list', ignoreList);
+
+      try {
         const res = await fetch('/upload-preview', {
-        method: 'POST',
-        body: formData,
+          method: 'POST',
+          body: formData,
         });
-
         const text = await res.text();
         preview.textContent = text;
         preview.style.display = 'block';
         downloadBtn.style.display = 'inline-block';
+      } catch (err) {
+        preview.textContent = "Error generating tree.";
+      }
+
+      previewBtn.disabled = false;
+      previewBtn.textContent = "Preview Tree";
     });
 
     document.getElementById("downloadBtn").addEventListener("click", () => {
