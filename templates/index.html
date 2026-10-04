@@ -209,6 +209,7 @@
     const preview = document.getElementById('preview');
     const downloadBtn = document.getElementById('downloadBtn');
     const previewBtn = document.getElementById("preview-btn");
+    let treeText = "";
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -261,19 +262,38 @@
           body: formData,
         });
         const text = await res.text();
-        preview.textContent = text;
         preview.style.display = 'block';
-        downloadBtn.style.display = 'inline-block';
+
+        if (res.ok) {
+          treeText = text;
+          preview.textContent = text;
+          downloadBtn.style.display = 'inline-block';
+        } else {
+          treeText = "";
+          preview.textContent = text || "Error generating tree.";
+          downloadBtn.style.display = 'none';
+        }
       } catch (err) {
+        treeText = "";
         preview.textContent = "Error generating tree.";
+        preview.style.display = 'block';
+        downloadBtn.style.display = 'none';
       }
 
       previewBtn.disabled = false;
       previewBtn.textContent = "Preview Tree";
     });
 
-    document.getElementById("downloadBtn").addEventListener("click", () => {
-        window.location.href = "/download-tree";
+    downloadBtn.addEventListener("click", () => {
+      if (!treeText) return;
+
+      const blob = new Blob([treeText], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "directory_structure.txt";
+      link.click();
+      URL.revokeObjectURL(url);
     });
     </script>
 </body>

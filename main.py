@@ -1,6 +1,6 @@
 # main.py
 from fastapi import FastAPI, UploadFile, File, Form, Request
-from fastapi.responses import HTMLResponse, FileResponse, PlainTextResponse
+from fastapi.responses import HTMLResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from typing import List, Optional
@@ -14,11 +14,7 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
-
-@app.get("/download-tree")
-def download_tree():
-    return FileResponse("directory_structure.txt", media_type="text/plain", filename="directory_structure.txt")
+    return templates.TemplateResponse(request, "index.html")
 
 @app.post("/upload-preview")
 async def upload_preview(
@@ -34,8 +30,8 @@ async def upload_preview(
     def should_ignore(path):
         parts = path.split('/')
         return any(
-            part.startswith('.') and not include_hidden or
-            any(part == pattern for pattern in ignore_names)
+            (part.startswith('.') and not include_hidden)
+            or any(part == pattern for pattern in ignore_names)
             for part in parts
         )
     
@@ -121,7 +117,4 @@ async def upload_preview(
     # Append zip warning if needed
     if zip_upload and skipped:
         output += f"\n\n⚠️Skipped {len(skipped)} file(s) due to long path errors in extraction."
-    with open("directory_structure.txt", "w", encoding="utf-8") as f:
-        f.write(output)
-
     return PlainTextResponse(output)

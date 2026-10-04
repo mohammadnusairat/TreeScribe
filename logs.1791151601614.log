@@ -1,0 +1,483 @@
+2026-09-28T07:07:38.152428224Z [inf]  INFO:     100.64.0.29:47946 - "GET / HTTP/1.1" 500 Internal Server Error
+2026-09-28T07:07:38.152436427Z [err]  ERROR:    Exception in ASGI application
+2026-09-28T07:07:38.152443925Z [err]  Traceback (most recent call last):
+2026-09-28T07:07:38.152451416Z [err]    File "/opt/venv/lib/python3.12/site-packages/uvicorn/protocols/http/h11_impl.py", line 415, in run_asgi
+2026-09-28T07:07:38.152458598Z [err]      result = await app(  # type: ignore[func-returns-value]
+2026-09-28T07:07:38.152466462Z [err]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-28T07:07:38.152473242Z [err]    File "/opt/venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-09-28T07:07:38.152480985Z [err]      return await self.app(scope, receive, send)
+2026-09-28T07:07:38.152487973Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-28T07:07:38.152495052Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/applications.py", line 1159, in __call__
+2026-09-28T07:07:38.152501539Z [err]      await super().__call__(scope, receive, send)
+2026-09-28T07:07:38.152511154Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/applications.py", line 90, in __call__
+2026-09-28T07:07:38.152518325Z [err]      await self.middleware_stack(scope, receive, send)
+2026-09-28T07:07:38.152525238Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-09-28T07:07:38.152532397Z [err]      raise exc
+2026-09-28T07:07:38.152538903Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-09-28T07:07:38.152545499Z [err]      await self.app(scope, receive, _send)
+2026-09-28T07:07:38.152553164Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-09-28T07:07:38.152559944Z [err]      await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-09-28T07:07:39.467966355Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-09-28T07:07:39.467977106Z [err]      raise exc
+2026-09-28T07:07:39.467983939Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-09-28T07:07:39.467993089Z [err]      await app(scope, receive, sender)
+2026-09-28T07:07:39.468001098Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-09-28T07:07:39.468007257Z [err]      await self.app(scope, receive, send)
+2026-09-28T07:07:39.468013375Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 660, in __call__
+2026-09-28T07:07:39.468022518Z [err]      await self.middleware_stack(scope, receive, send)
+2026-09-28T07:07:39.468029067Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 680, in app
+2026-09-28T07:07:39.468035836Z [err]      await route.handle(scope, receive, send)
+2026-09-28T07:07:39.468041830Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
+2026-09-28T07:07:39.468047606Z [err]      await self.app(scope, receive, send)
+2026-09-28T07:07:39.468053885Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 134, in app
+2026-09-28T07:07:39.468061318Z [err]      await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-09-28T07:07:39.468068162Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-09-28T07:07:39.468074225Z [err]      raise exc
+2026-09-28T07:07:39.468080705Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-09-28T07:07:39.468086845Z [err]      await app(scope, receive, sender)
+2026-09-28T07:07:39.468092895Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 120, in app
+2026-09-28T07:07:40.730922205Z [err]      response = await f(request)
+2026-09-28T07:07:40.730933761Z [err]                 ^^^^^^^^^^^^^^^^
+2026-09-28T07:07:40.730940625Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 674, in app
+2026-09-28T07:07:40.730946719Z [err]      raw_response = await run_endpoint_function(
+2026-09-28T07:07:40.730954411Z [err]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-28T07:07:40.730959526Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+2026-09-28T07:07:40.730965187Z [err]      return await dependant.call(**values)
+2026-09-28T07:07:40.730970573Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-28T07:07:40.730976849Z [err]    File "/app/main.py", line 17, in home
+2026-09-28T07:07:40.730983234Z [err]      return templates.TemplateResponse("index.html", {"request": request})
+2026-09-28T07:07:40.730988549Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-28T07:07:40.730994486Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/templating.py", line 148, in TemplateResponse
+2026-09-28T07:07:40.731001301Z [err]      template = self.get_template(name)
+2026-09-28T07:07:40.731007375Z [err]                 ^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-28T07:07:40.731012622Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/templating.py", line 115, in get_template
+2026-09-28T07:07:40.731018044Z [err]      return self.env.get_template(name)
+2026-09-28T07:07:40.731023802Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-28T07:07:40.731029910Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/environment.py", line 1016, in get_template
+2026-09-28T07:07:40.731038315Z [err]      return self._load_template(name, globals)
+2026-09-28T07:07:40.731043862Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-28T07:07:40.731050644Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/environment.py", line 964, in _load_template
+2026-09-28T07:07:42.233927513Z [err]      template = self.cache.get(cache_key)
+2026-09-28T07:07:42.233939956Z [err]                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-28T07:07:42.233948322Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/utils.py", line 477, in get
+2026-09-28T07:07:42.233959142Z [err]      return self[key]
+2026-09-28T07:07:42.233966150Z [err]             ~~~~^^^^^
+2026-09-28T07:07:42.233974734Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/utils.py", line 515, in __getitem__
+2026-09-28T07:07:42.233982558Z [err]      rv = self._mapping[key]
+2026-09-28T07:07:42.233989962Z [err]           ~~~~~~~~~~~~~^^^^^
+2026-09-28T07:07:42.233996843Z [err]  TypeError: unhashable type: 'dict'
+2026-09-28T18:37:26.969193050Z [inf]  INFO:     100.64.0.30:31134 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2026-09-30T12:30:45.558069406Z [inf]  INFO:     100.64.0.27:61632 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2026-09-30T12:30:45.558078249Z [inf]  INFO:     100.64.0.27:61632 - "GET / HTTP/1.1" 500 Internal Server Error
+2026-09-30T12:30:45.558086598Z [err]  ERROR:    Exception in ASGI application
+2026-09-30T12:30:45.558680402Z [err]  Traceback (most recent call last):
+2026-09-30T12:30:45.558692207Z [err]    File "/opt/venv/lib/python3.12/site-packages/uvicorn/protocols/http/h11_impl.py", line 415, in run_asgi
+2026-09-30T12:30:45.558699453Z [err]      result = await app(  # type: ignore[func-returns-value]
+2026-09-30T12:30:45.558706530Z [err]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-30T12:30:45.558713375Z [err]    File "/opt/venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-09-30T12:30:45.558721176Z [err]      return await self.app(scope, receive, send)
+2026-09-30T12:30:45.558727746Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-30T12:30:45.558733890Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/applications.py", line 1159, in __call__
+2026-09-30T12:30:45.558740202Z [err]      await super().__call__(scope, receive, send)
+2026-09-30T12:30:45.558746737Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/applications.py", line 90, in __call__
+2026-09-30T12:30:45.558756765Z [err]      await self.middleware_stack(scope, receive, send)
+2026-09-30T12:30:45.558763377Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-09-30T12:30:45.558769657Z [err]      raise exc
+2026-09-30T12:30:45.558777260Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-09-30T12:30:45.558790116Z [err]      await self.app(scope, receive, _send)
+2026-09-30T12:30:45.558796210Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-09-30T12:30:48.442918529Z [err]      await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-09-30T12:30:48.442930508Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-09-30T12:30:48.442937457Z [err]      raise exc
+2026-09-30T12:30:48.442943182Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-09-30T12:30:48.442949012Z [err]      await app(scope, receive, sender)
+2026-09-30T12:30:48.442955623Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-09-30T12:30:48.442962071Z [err]      await self.app(scope, receive, send)
+2026-09-30T12:30:48.442967661Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 660, in __call__
+2026-09-30T12:30:48.442974018Z [err]      await self.middleware_stack(scope, receive, send)
+2026-09-30T12:30:48.442979953Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 680, in app
+2026-09-30T12:30:48.442985115Z [err]      await route.handle(scope, receive, send)
+2026-09-30T12:30:48.442991363Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
+2026-09-30T12:30:48.442996923Z [err]      await self.app(scope, receive, send)
+2026-09-30T12:30:48.443002391Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 134, in app
+2026-09-30T12:30:48.443008318Z [err]      await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-09-30T12:30:48.443013466Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-09-30T12:30:48.443021915Z [err]      raise exc
+2026-09-30T12:30:48.443027943Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-09-30T12:30:51.574125500Z [err]      await app(scope, receive, sender)
+2026-09-30T12:30:51.574141223Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 120, in app
+2026-09-30T12:30:51.574149190Z [err]      response = await f(request)
+2026-09-30T12:30:51.574155906Z [err]                 ^^^^^^^^^^^^^^^^
+2026-09-30T12:30:51.574162923Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 674, in app
+2026-09-30T12:30:51.574171340Z [err]      raw_response = await run_endpoint_function(
+2026-09-30T12:30:51.574178905Z [err]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-30T12:30:51.574186826Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+2026-09-30T12:30:51.574194176Z [err]      return await dependant.call(**values)
+2026-09-30T12:30:51.574200336Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-30T12:30:51.574207167Z [err]    File "/app/main.py", line 17, in home
+2026-09-30T12:30:51.574213852Z [err]      return templates.TemplateResponse("index.html", {"request": request})
+2026-09-30T12:30:51.574221578Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-30T12:30:51.574228601Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/templating.py", line 148, in TemplateResponse
+2026-09-30T12:30:51.574235825Z [err]      template = self.get_template(name)
+2026-09-30T12:30:51.574243587Z [err]                 ^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-30T12:30:51.574249462Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/templating.py", line 115, in get_template
+2026-09-30T12:30:51.574256165Z [err]      return self.env.get_template(name)
+2026-09-30T12:30:51.574262003Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-30T12:30:51.574267690Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/environment.py", line 1016, in get_template
+2026-09-30T12:30:55.590361059Z [err]      return self._load_template(name, globals)
+2026-09-30T12:30:55.590375625Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-30T12:30:55.590384228Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/environment.py", line 964, in _load_template
+2026-09-30T12:30:55.590392265Z [err]      template = self.cache.get(cache_key)
+2026-09-30T12:30:55.590399339Z [err]                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-30T12:30:55.590410708Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/utils.py", line 477, in get
+2026-09-30T12:30:55.590417937Z [err]      return self[key]
+2026-09-30T12:30:55.590425630Z [err]             ~~~~^^^^^
+2026-09-30T12:30:55.590432284Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/utils.py", line 515, in __getitem__
+2026-09-30T12:30:55.590439186Z [err]      rv = self._mapping[key]
+2026-09-30T12:30:55.590445445Z [err]           ~~~~~~~~~~~~~^^^^^
+2026-09-30T12:30:55.590452115Z [err]  TypeError: unhashable type: 'dict'
+2026-10-02T12:48:06.397927743Z [inf]  INFO:     100.64.0.31:62754 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2026-10-02T12:49:53.200239996Z [inf]  INFO:     100.64.0.32:38862 - "GET / HTTP/1.1" 500 Internal Server Error
+2026-10-02T12:49:53.200252151Z [err]  ERROR:    Exception in ASGI application
+2026-10-02T12:49:53.200259317Z [err]  Traceback (most recent call last):
+2026-10-02T12:49:53.200265333Z [err]    File "/opt/venv/lib/python3.12/site-packages/uvicorn/protocols/http/h11_impl.py", line 415, in run_asgi
+2026-10-02T12:49:53.200272161Z [err]      result = await app(  # type: ignore[func-returns-value]
+2026-10-02T12:49:53.200295437Z [err]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-02T12:49:53.200303218Z [err]    File "/opt/venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-10-02T12:49:53.200310593Z [err]      return await self.app(scope, receive, send)
+2026-10-02T12:49:53.200318462Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-02T12:49:53.200327364Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/applications.py", line 1159, in __call__
+2026-10-02T12:49:53.200334948Z [err]      await super().__call__(scope, receive, send)
+2026-10-02T12:49:53.200340935Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/applications.py", line 90, in __call__
+2026-10-02T12:49:53.200347483Z [err]      await self.middleware_stack(scope, receive, send)
+2026-10-02T12:49:53.200352657Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-10-02T12:49:53.200358245Z [err]      raise exc
+2026-10-02T12:49:53.200366225Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-10-02T12:49:53.200371786Z [err]      await self.app(scope, receive, _send)
+2026-10-02T12:49:53.200386216Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-10-02T12:49:53.200394213Z [err]      await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-10-02T12:49:54.992538680Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-10-02T12:49:54.992552815Z [err]      raise exc
+2026-10-02T12:49:54.992560611Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-10-02T12:49:54.992567843Z [err]      await app(scope, receive, sender)
+2026-10-02T12:49:54.992575389Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-10-02T12:49:54.992582855Z [err]      await self.app(scope, receive, send)
+2026-10-02T12:49:54.992589614Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 660, in __call__
+2026-10-02T12:49:54.992597148Z [err]      await self.middleware_stack(scope, receive, send)
+2026-10-02T12:49:54.992603657Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 680, in app
+2026-10-02T12:49:54.992610757Z [err]      await route.handle(scope, receive, send)
+2026-10-02T12:49:54.992617394Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
+2026-10-02T12:49:54.992624359Z [err]      await self.app(scope, receive, send)
+2026-10-02T12:49:54.992632193Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 134, in app
+2026-10-02T12:49:54.992638681Z [err]      await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-10-02T12:49:54.992644717Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-10-02T12:49:54.992654584Z [err]      raise exc
+2026-10-02T12:49:54.992661513Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-10-02T12:49:54.992668105Z [err]      await app(scope, receive, sender)
+2026-10-02T12:49:54.992675061Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 120, in app
+2026-10-02T12:49:56.875251612Z [err]      response = await f(request)
+2026-10-02T12:49:56.875260602Z [err]                 ^^^^^^^^^^^^^^^^
+2026-10-02T12:49:56.875266618Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 674, in app
+2026-10-02T12:49:56.875273944Z [err]      raw_response = await run_endpoint_function(
+2026-10-02T12:49:56.875284882Z [err]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-02T12:49:56.875310482Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+2026-10-02T12:49:56.875318289Z [err]      return await dependant.call(**values)
+2026-10-02T12:49:56.875324289Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-02T12:49:56.875330688Z [err]    File "/app/main.py", line 17, in home
+2026-10-02T12:49:56.875337058Z [err]      return templates.TemplateResponse("index.html", {"request": request})
+2026-10-02T12:49:56.875343117Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-02T12:49:56.875349094Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/templating.py", line 148, in TemplateResponse
+2026-10-02T12:49:56.875355278Z [err]      template = self.get_template(name)
+2026-10-02T12:49:56.875360770Z [err]                 ^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-02T12:49:56.875366525Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/templating.py", line 115, in get_template
+2026-10-02T12:49:56.875372567Z [err]      return self.env.get_template(name)
+2026-10-02T12:49:56.875378564Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-02T12:49:56.875384903Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/environment.py", line 1016, in get_template
+2026-10-02T12:49:56.875390375Z [err]      return self._load_template(name, globals)
+2026-10-02T12:49:56.875395741Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-02T12:49:56.875417715Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/environment.py", line 964, in _load_template
+2026-10-02T12:49:58.407408021Z [err]      template = self.cache.get(cache_key)
+2026-10-02T12:49:58.407424335Z [err]                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-02T12:49:58.407434165Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/utils.py", line 477, in get
+2026-10-02T12:49:58.407445414Z [err]      return self[key]
+2026-10-02T12:49:58.407453264Z [err]             ~~~~^^^^^
+2026-10-02T12:49:58.407461758Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/utils.py", line 515, in __getitem__
+2026-10-02T12:49:58.407471817Z [err]      rv = self._mapping[key]
+2026-10-02T12:49:58.407479954Z [err]           ~~~~~~~~~~~~~^^^^^
+2026-10-02T12:49:58.407488428Z [err]  TypeError: unhashable type: 'dict'
+2026-10-02T23:56:29.341721584Z [inf]  INFO:     100.64.0.3:55986 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2026-10-03T02:49:40.374457057Z [inf]  INFO:     100.64.0.33:16180 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2026-10-03T02:49:40.374512442Z [inf]  INFO:     100.64.0.24:23110 - "GET / HTTP/1.1" 500 Internal Server Error
+2026-10-03T02:49:40.374520710Z [err]  ERROR:    Exception in ASGI application
+2026-10-03T02:49:40.374526373Z [err]  Traceback (most recent call last):
+2026-10-03T02:49:40.374531742Z [err]    File "/opt/venv/lib/python3.12/site-packages/uvicorn/protocols/http/h11_impl.py", line 415, in run_asgi
+2026-10-03T02:49:40.374537373Z [err]      result = await app(  # type: ignore[func-returns-value]
+2026-10-03T02:49:40.374584278Z [err]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-03T02:49:40.374649123Z [err]    File "/opt/venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-10-03T02:49:40.374655852Z [err]      return await self.app(scope, receive, send)
+2026-10-03T02:49:40.374736141Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-03T02:49:40.374744075Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/applications.py", line 1159, in __call__
+2026-10-03T02:49:40.374751395Z [err]      await super().__call__(scope, receive, send)
+2026-10-03T02:49:40.374759789Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/applications.py", line 90, in __call__
+2026-10-03T02:49:40.374765365Z [err]      await self.middleware_stack(scope, receive, send)
+2026-10-03T02:49:40.374776024Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-10-03T02:49:40.374780978Z [err]      raise exc
+2026-10-03T02:49:40.374786124Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-10-03T02:49:40.374791987Z [err]      await self.app(scope, receive, _send)
+2026-10-03T02:49:40.374798037Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-10-03T02:49:41.789112963Z [err]      await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-10-03T02:49:41.789131781Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-10-03T02:49:41.789143630Z [err]      raise exc
+2026-10-03T02:49:41.789156395Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-10-03T02:49:41.789168206Z [err]      await app(scope, receive, sender)
+2026-10-03T02:49:41.789182695Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-10-03T02:49:41.789191342Z [err]      await self.app(scope, receive, send)
+2026-10-03T02:49:41.789200766Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 660, in __call__
+2026-10-03T02:49:41.789211501Z [err]      await self.middleware_stack(scope, receive, send)
+2026-10-03T02:49:41.789222648Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 680, in app
+2026-10-03T02:49:41.789230616Z [err]      await route.handle(scope, receive, send)
+2026-10-03T02:49:41.789238619Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
+2026-10-03T02:49:41.789246574Z [err]      await self.app(scope, receive, send)
+2026-10-03T02:49:41.789254494Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 134, in app
+2026-10-03T02:49:41.789262711Z [err]      await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-10-03T02:49:41.789270249Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-10-03T02:49:41.789278322Z [err]      raise exc
+2026-10-03T02:49:41.789288003Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-10-03T02:49:43.374147587Z [err]      await app(scope, receive, sender)
+2026-10-03T02:49:43.374160899Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 120, in app
+2026-10-03T02:49:43.374168717Z [err]      response = await f(request)
+2026-10-03T02:49:43.374177058Z [err]                 ^^^^^^^^^^^^^^^^
+2026-10-03T02:49:43.374183566Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 674, in app
+2026-10-03T02:49:43.374189693Z [err]      raw_response = await run_endpoint_function(
+2026-10-03T02:49:43.374196616Z [err]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-03T02:49:43.374203306Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+2026-10-03T02:49:43.374209524Z [err]      return await dependant.call(**values)
+2026-10-03T02:49:43.374219511Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-03T02:49:43.374227308Z [err]    File "/app/main.py", line 17, in home
+2026-10-03T02:49:43.374235305Z [err]      return templates.TemplateResponse("index.html", {"request": request})
+2026-10-03T02:49:43.374243053Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-03T02:49:43.374249758Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/templating.py", line 148, in TemplateResponse
+2026-10-03T02:49:43.374256911Z [err]      template = self.get_template(name)
+2026-10-03T02:49:43.374263673Z [err]                 ^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-03T02:49:43.374270566Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/templating.py", line 115, in get_template
+2026-10-03T02:49:43.374278900Z [err]      return self.env.get_template(name)
+2026-10-03T02:49:43.374284933Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-03T02:49:43.374291511Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/environment.py", line 1016, in get_template
+2026-10-03T02:49:44.857640004Z [err]      return self._load_template(name, globals)
+2026-10-03T02:49:44.857649750Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-03T02:49:44.857655409Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/environment.py", line 964, in _load_template
+2026-10-03T02:49:44.857660707Z [err]      template = self.cache.get(cache_key)
+2026-10-03T02:49:44.857667129Z [err]                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-03T02:49:44.857672703Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/utils.py", line 477, in get
+2026-10-03T02:49:44.857677884Z [err]      return self[key]
+2026-10-03T02:49:44.857686751Z [err]             ~~~~^^^^^
+2026-10-03T02:49:44.857691297Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/utils.py", line 515, in __getitem__
+2026-10-03T02:49:44.857697572Z [err]      rv = self._mapping[key]
+2026-10-03T02:49:44.857702776Z [err]           ~~~~~~~~~~~~~^^^^^
+2026-10-03T02:49:44.857708245Z [err]  TypeError: unhashable type: 'dict'
+2026-10-04T22:04:13.540238989Z [inf]  INFO:     100.64.0.28:50576 - "GET / HTTP/1.1" 500 Internal Server Error
+2026-10-04T22:04:13.540243639Z [err]  ERROR:    Exception in ASGI application
+2026-10-04T22:04:13.540248217Z [err]  Traceback (most recent call last):
+2026-10-04T22:04:13.540252668Z [err]    File "/opt/venv/lib/python3.12/site-packages/uvicorn/protocols/http/h11_impl.py", line 415, in run_asgi
+2026-10-04T22:04:13.540257562Z [err]      result = await app(  # type: ignore[func-returns-value]
+2026-10-04T22:04:13.540263251Z [err]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:04:13.540268265Z [err]    File "/opt/venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-10-04T22:04:13.540272354Z [err]      return await self.app(scope, receive, send)
+2026-10-04T22:04:13.540277166Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:04:13.540281676Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/applications.py", line 1159, in __call__
+2026-10-04T22:04:13.540286550Z [err]      await super().__call__(scope, receive, send)
+2026-10-04T22:04:13.540291120Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/applications.py", line 90, in __call__
+2026-10-04T22:04:13.540296500Z [err]      await self.middleware_stack(scope, receive, send)
+2026-10-04T22:04:13.540303248Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-10-04T22:04:13.540309685Z [err]      raise exc
+2026-10-04T22:04:13.540316473Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-10-04T22:04:13.540322494Z [err]      await self.app(scope, receive, _send)
+2026-10-04T22:04:13.540328248Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-10-04T22:04:13.540332808Z [err]      await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-10-04T22:04:15.303071600Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-10-04T22:04:15.303078685Z [err]      raise exc
+2026-10-04T22:04:15.303085461Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-10-04T22:04:15.303091319Z [err]      await app(scope, receive, sender)
+2026-10-04T22:04:15.303096967Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-10-04T22:04:15.303102913Z [err]      await self.app(scope, receive, send)
+2026-10-04T22:04:15.303108114Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 660, in __call__
+2026-10-04T22:04:15.303113694Z [err]      await self.middleware_stack(scope, receive, send)
+2026-10-04T22:04:15.303120451Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 680, in app
+2026-10-04T22:04:15.303128047Z [err]      await route.handle(scope, receive, send)
+2026-10-04T22:04:15.303134297Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
+2026-10-04T22:04:15.303141133Z [err]      await self.app(scope, receive, send)
+2026-10-04T22:04:15.303147468Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 134, in app
+2026-10-04T22:04:15.303154372Z [err]      await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-10-04T22:04:15.303160686Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-10-04T22:04:15.303166634Z [err]      raise exc
+2026-10-04T22:04:15.303172780Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-10-04T22:04:15.303183641Z [err]      await app(scope, receive, sender)
+2026-10-04T22:04:15.303189810Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 120, in app
+2026-10-04T22:04:16.903490230Z [err]      response = await f(request)
+2026-10-04T22:04:16.903504205Z [err]                 ^^^^^^^^^^^^^^^^
+2026-10-04T22:04:16.903512894Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 674, in app
+2026-10-04T22:04:16.903520280Z [err]      raw_response = await run_endpoint_function(
+2026-10-04T22:04:16.903527485Z [err]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:04:16.903534964Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+2026-10-04T22:04:16.903542198Z [err]      return await dependant.call(**values)
+2026-10-04T22:04:16.903550249Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:04:16.903556988Z [err]    File "/app/main.py", line 17, in home
+2026-10-04T22:04:16.903564377Z [err]      return templates.TemplateResponse("index.html", {"request": request})
+2026-10-04T22:04:16.903571512Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:04:16.903578543Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/templating.py", line 148, in TemplateResponse
+2026-10-04T22:04:16.903585221Z [err]      template = self.get_template(name)
+2026-10-04T22:04:16.903591348Z [err]                 ^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:04:16.903596878Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/templating.py", line 115, in get_template
+2026-10-04T22:04:16.903603195Z [err]      return self.env.get_template(name)
+2026-10-04T22:04:16.903610190Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:04:16.903616990Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/environment.py", line 1016, in get_template
+2026-10-04T22:04:16.903623162Z [err]      return self._load_template(name, globals)
+2026-10-04T22:04:16.903629088Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:04:16.903635037Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/environment.py", line 964, in _load_template
+2026-10-04T22:04:18.477317754Z [err]      template = self.cache.get(cache_key)
+2026-10-04T22:04:18.477329555Z [err]                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:04:18.477340935Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/utils.py", line 477, in get
+2026-10-04T22:04:18.477347119Z [err]      return self[key]
+2026-10-04T22:04:18.477352672Z [err]             ~~~~^^^^^
+2026-10-04T22:04:18.477360122Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/utils.py", line 515, in __getitem__
+2026-10-04T22:04:18.477365422Z [err]      rv = self._mapping[key]
+2026-10-04T22:04:18.477371185Z [err]           ~~~~~~~~~~~~~^^^^^
+2026-10-04T22:04:18.477378378Z [err]  TypeError: unhashable type: 'dict'
+2026-10-04T22:04:18.477385722Z [inf]  INFO:     100.64.0.28:50580 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-10-04T22:04:18.477391744Z [inf]  INFO:     100.64.0.34:50550 - "GET / HTTP/1.1" 500 Internal Server Error
+2026-10-04T22:04:18.477397819Z [err]  ERROR:    Exception in ASGI application
+2026-10-04T22:04:18.477404476Z [err]  Traceback (most recent call last):
+2026-10-04T22:04:18.477411003Z [err]    File "/opt/venv/lib/python3.12/site-packages/uvicorn/protocols/http/h11_impl.py", line 415, in run_asgi
+2026-10-04T22:04:18.477416588Z [err]      result = await app(  # type: ignore[func-returns-value]
+2026-10-04T22:04:18.477422143Z [err]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:04:18.477428875Z [err]    File "/opt/venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-10-04T22:04:18.477435047Z [err]      return await self.app(scope, receive, send)
+2026-10-04T22:04:18.477440485Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:04:18.477446178Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/applications.py", line 1159, in __call__
+2026-10-04T22:04:18.477452387Z [err]      await super().__call__(scope, receive, send)
+2026-10-04T22:04:20.387808578Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/applications.py", line 90, in __call__
+2026-10-04T22:04:20.387825646Z [err]      await self.middleware_stack(scope, receive, send)
+2026-10-04T22:04:20.387833205Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-10-04T22:04:20.387839656Z [err]      raise exc
+2026-10-04T22:04:20.387846721Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-10-04T22:04:20.387854118Z [err]      await self.app(scope, receive, _send)
+2026-10-04T22:04:20.387860874Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-10-04T22:04:20.387868827Z [err]      await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-10-04T22:04:20.387874959Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-10-04T22:04:20.387882067Z [err]      raise exc
+2026-10-04T22:04:20.387892422Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-10-04T22:04:20.387899782Z [err]      await app(scope, receive, sender)
+2026-10-04T22:04:20.387906067Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-10-04T22:04:20.387912039Z [err]      await self.app(scope, receive, send)
+2026-10-04T22:04:20.387916906Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 660, in __call__
+2026-10-04T22:04:20.387922446Z [err]      await self.middleware_stack(scope, receive, send)
+2026-10-04T22:04:20.387928129Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 680, in app
+2026-10-04T22:04:20.387935709Z [err]      await route.handle(scope, receive, send)
+2026-10-04T22:04:22.104166868Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
+2026-10-04T22:04:22.104178787Z [err]      await self.app(scope, receive, send)
+2026-10-04T22:04:22.104186472Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 134, in app
+2026-10-04T22:04:22.104193186Z [err]      await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-10-04T22:04:22.104199331Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-10-04T22:04:22.104205618Z [err]      raise exc
+2026-10-04T22:04:22.104211567Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-10-04T22:04:22.104219212Z [err]      await app(scope, receive, sender)
+2026-10-04T22:04:22.104226263Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 120, in app
+2026-10-04T22:04:22.104232682Z [err]      response = await f(request)
+2026-10-04T22:04:22.104239135Z [err]                 ^^^^^^^^^^^^^^^^
+2026-10-04T22:04:22.104245703Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 674, in app
+2026-10-04T22:04:22.104251928Z [err]      raw_response = await run_endpoint_function(
+2026-10-04T22:04:22.104258066Z [err]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:04:22.104265507Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+2026-10-04T22:04:22.104271459Z [err]      return await dependant.call(**values)
+2026-10-04T22:04:22.104281254Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:04:22.104287745Z [err]    File "/app/main.py", line 17, in home
+2026-10-04T22:04:22.104293527Z [err]      return templates.TemplateResponse("index.html", {"request": request})
+2026-10-04T22:04:22.104299437Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:04:24.086406856Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/templating.py", line 148, in TemplateResponse
+2026-10-04T22:04:24.086420422Z [err]      template = self.get_template(name)
+2026-10-04T22:04:24.086429299Z [err]                 ^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:04:24.086436906Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/templating.py", line 115, in get_template
+2026-10-04T22:04:24.086444039Z [err]      return self.env.get_template(name)
+2026-10-04T22:04:24.086454930Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:04:24.086463225Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/environment.py", line 1016, in get_template
+2026-10-04T22:04:24.086470800Z [err]      return self._load_template(name, globals)
+2026-10-04T22:04:24.086477933Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:04:24.086486254Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/environment.py", line 964, in _load_template
+2026-10-04T22:04:24.086492749Z [err]      template = self.cache.get(cache_key)
+2026-10-04T22:04:24.086500372Z [err]                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:04:24.086507393Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/utils.py", line 477, in get
+2026-10-04T22:04:24.086514940Z [err]      return self[key]
+2026-10-04T22:04:24.086524681Z [err]             ~~~~^^^^^
+2026-10-04T22:04:24.086531358Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/utils.py", line 515, in __getitem__
+2026-10-04T22:04:24.086538300Z [err]      rv = self._mapping[key]
+2026-10-04T22:04:24.086546972Z [err]           ~~~~~~~~~~~~~^^^^^
+2026-10-04T22:04:24.086554285Z [err]  TypeError: unhashable type: 'dict'
+2026-10-04T22:04:24.086562491Z [inf]  INFO:     100.64.0.35:61892 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-10-04T22:05:37.708672959Z [inf]  INFO:     100.64.0.27:39866 - "GET / HTTP/1.1" 500 Internal Server Error
+2026-10-04T22:05:37.708689046Z [err]  ERROR:    Exception in ASGI application
+2026-10-04T22:05:37.708699121Z [err]  Traceback (most recent call last):
+2026-10-04T22:05:37.708707738Z [err]    File "/opt/venv/lib/python3.12/site-packages/uvicorn/protocols/http/h11_impl.py", line 415, in run_asgi
+2026-10-04T22:05:37.708715957Z [err]      result = await app(  # type: ignore[func-returns-value]
+2026-10-04T22:05:37.708723426Z [err]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:05:37.708730157Z [err]    File "/opt/venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 62, in __call__
+2026-10-04T22:05:37.708736955Z [err]      return await self.app(scope, receive, send)
+2026-10-04T22:05:37.708743672Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:05:37.708752444Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/applications.py", line 1159, in __call__
+2026-10-04T22:05:37.708759414Z [err]      await super().__call__(scope, receive, send)
+2026-10-04T22:05:37.708766151Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/applications.py", line 90, in __call__
+2026-10-04T22:05:37.708772443Z [err]      await self.middleware_stack(scope, receive, send)
+2026-10-04T22:05:37.708778810Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-10-04T22:05:37.708785569Z [err]      raise exc
+2026-10-04T22:05:37.710791041Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-10-04T22:05:37.710802602Z [err]      await self.app(scope, receive, _send)
+2026-10-04T22:05:37.710812763Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-10-04T22:05:37.710823988Z [err]      await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-10-04T22:05:39.338150835Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-10-04T22:05:39.338157881Z [err]      raise exc
+2026-10-04T22:05:39.338164234Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-10-04T22:05:39.338169724Z [err]      await app(scope, receive, sender)
+2026-10-04T22:05:39.338175819Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-10-04T22:05:39.338182427Z [err]      await self.app(scope, receive, send)
+2026-10-04T22:05:39.338188514Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 660, in __call__
+2026-10-04T22:05:39.338194256Z [err]      await self.middleware_stack(scope, receive, send)
+2026-10-04T22:05:39.338200376Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 680, in app
+2026-10-04T22:05:39.338212287Z [err]      await route.handle(scope, receive, send)
+2026-10-04T22:05:39.338221825Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
+2026-10-04T22:05:39.338228935Z [err]      await self.app(scope, receive, send)
+2026-10-04T22:05:39.338233849Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 134, in app
+2026-10-04T22:05:39.338239787Z [err]      await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-10-04T22:05:39.338246113Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-10-04T22:05:39.338252062Z [err]      raise exc
+2026-10-04T22:05:39.338257807Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-10-04T22:05:39.338265126Z [err]      await app(scope, receive, sender)
+2026-10-04T22:05:39.338273041Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 120, in app
+2026-10-04T22:05:41.656147491Z [err]      response = await f(request)
+2026-10-04T22:05:41.656155837Z [err]                 ^^^^^^^^^^^^^^^^
+2026-10-04T22:05:41.656161832Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 674, in app
+2026-10-04T22:05:41.656167219Z [err]      raw_response = await run_endpoint_function(
+2026-10-04T22:05:41.656171449Z [err]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:05:41.656176872Z [err]    File "/opt/venv/lib/python3.12/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+2026-10-04T22:05:41.656182928Z [err]      return await dependant.call(**values)
+2026-10-04T22:05:41.656189481Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:05:41.656195793Z [err]    File "/app/main.py", line 17, in home
+2026-10-04T22:05:41.656201716Z [err]      return templates.TemplateResponse("index.html", {"request": request})
+2026-10-04T22:05:41.656209603Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:05:41.656216178Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/templating.py", line 148, in TemplateResponse
+2026-10-04T22:05:41.656221825Z [err]      template = self.get_template(name)
+2026-10-04T22:05:41.656228407Z [err]                 ^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:05:41.656234463Z [err]    File "/opt/venv/lib/python3.12/site-packages/starlette/templating.py", line 115, in get_template
+2026-10-04T22:05:41.656242315Z [err]      return self.env.get_template(name)
+2026-10-04T22:05:41.656247957Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:05:41.656253806Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/environment.py", line 1016, in get_template
+2026-10-04T22:05:41.656258986Z [err]      return self._load_template(name, globals)
+2026-10-04T22:05:41.656265076Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:05:41.656269888Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/environment.py", line 964, in _load_template
+2026-10-04T22:05:43.859979304Z [err]      template = self.cache.get(cache_key)
+2026-10-04T22:05:43.859991263Z [err]                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T22:05:43.859999560Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/utils.py", line 477, in get
+2026-10-04T22:05:43.860006770Z [err]      return self[key]
+2026-10-04T22:05:43.860013522Z [err]             ~~~~^^^^^
+2026-10-04T22:05:43.860020796Z [err]    File "/opt/venv/lib/python3.12/site-packages/jinja2/utils.py", line 515, in __getitem__
+2026-10-04T22:05:43.860028158Z [err]      rv = self._mapping[key]
+2026-10-04T22:05:43.860035089Z [err]           ~~~~~~~~~~~~~^^^^^
+2026-10-04T22:05:43.860041881Z [err]  TypeError: unhashable type: 'dict'
